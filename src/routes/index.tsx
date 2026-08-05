@@ -1,24 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { TopNav } from "@/components/qp/TopNav";
+import { Stepper } from "@/components/qp/Stepper";
+import { RfqHeader } from "@/components/qp/RfqHeader";
+import { SectionInput } from "@/components/qp/SectionInput";
+import { SectionExtraction } from "@/components/qp/SectionExtraction";
+import { SectionOdoo } from "@/components/qp/SectionOdoo";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "QuotePilot — RFQ to Priced Quote for Coating Estimators" },
+      {
+        name: "description",
+        content:
+          "QuotePilot turns customer RFQ emails into structured, priced powder coating quotes and cross-checks them against Odoo before export.",
+      },
+      { property: "og:title", content: "QuotePilot — RFQ Automation for Coating Estimators" },
+      {
+        property: "og:description",
+        content:
+          "Extract coating specs, price each part, and cross-check customers and parts against Odoo before exporting the quote.",
+      },
+    ],
+  }),
+  component: QuotePilot,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function QuotePilot() {
+  const [step, setStep] = useState(1);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background font-sans text-foreground">
+      <TopNav />
+      <Stepper active={step} onChange={setStep} />
+      <main className="mx-auto max-w-5xl px-4 py-8">
+        <div className="space-y-6">
+          <RfqHeader />
+          {step === 0 ? <SectionInput onRun={() => setStep(1)} /> : null}
+          {step === 1 ? (
+            <SectionExtraction onBack={() => setStep(0)} onContinue={() => setStep(2)} />
+          ) : null}
+          {step === 2 ? <SectionOdoo onBack={() => setStep(1)} /> : null}
+        </div>
+      </main>
     </div>
   );
 }
