@@ -18,24 +18,24 @@ export function Field({
   editable?: boolean;
 }) {
   return (
-    <div className="group rounded-md px-2 py-2 -mx-2 transition-colors hover:bg-surface">
-      <div className="text-sm text-muted-foreground">{label}</div>
-      <div className="mt-0.5 flex items-center gap-2">
+    <div className="group -mx-2 flex flex-wrap items-start gap-x-3 gap-y-0.5 rounded-md px-2 py-1.5 transition-colors hover:bg-surface">
+      <div className="w-44 shrink-0 text-[15px] font-semibold text-foreground">{label}:</div>
+      <div className="flex min-w-0 flex-1 items-center gap-2">
         <div
           className={cn(
-            "text-base",
+            "text-[15px]",
             warn ? "font-medium text-warning" : "text-foreground",
-            !value && !children && "text-muted-foreground italic",
+            !value && !children && "text-muted-foreground",
           )}
         >
           {children ?? value ?? "—"}
+          {helper ? <span className="ml-1.5 text-muted-foreground">({helper})</span> : null}
         </div>
-        {warn ? <AlertTriangle className="size-4 text-warning" /> : null}
+        {warn ? <AlertTriangle className="size-4 shrink-0 text-warning" /> : null}
         {editable ? (
-          <Pencil className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+          <Pencil className="size-3.5 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
         ) : null}
       </div>
-      {helper ? <div className="mt-0.5 text-sm text-muted-foreground">{helper}</div> : null}
     </div>
   );
 }
@@ -52,11 +52,11 @@ export function KV({
   bold?: boolean;
 }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 py-1.5">
-      <span className="text-sm text-muted-foreground">{label}</span>
+    <div className="flex items-baseline justify-between gap-4 py-1">
+      <span className="text-[15px] text-muted-foreground">{label}</span>
       <span
         className={cn(
-          "text-right text-base",
+          "text-right text-[15px] tabular-nums",
           bold && "font-semibold",
           warn && "font-medium text-warning",
         )}

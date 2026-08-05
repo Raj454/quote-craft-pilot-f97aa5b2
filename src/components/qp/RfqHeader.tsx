@@ -1,9 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 
-const pills = [
-  "BU: Maverick Powder Coating",
-  "Received: July 5, 2026",
-  "Customer: ABC Metal Works",
+const pills: Array<[string, string]> = [
+  ["BU:", "Maverick Powder Coating"],
+  ["Received:", "July 5, 2026"],
+  ["Customer:", "ABC Metal Works"],
 ];
 
 export function RfqHeader() {
@@ -14,12 +14,12 @@ export function RfqHeader() {
         <Badge variant="success">Extraction Complete</Badge>
       </div>
       <div className="flex flex-wrap items-center gap-2">
-        {pills.map((p) => (
+        {pills.map(([k, v]) => (
           <span
-            key={p}
+            key={k}
             className="rounded-full border border-border bg-surface px-3 py-1 text-sm text-muted-foreground"
           >
-            {p}
+            <span className="font-semibold text-foreground">{k}</span> {v}
           </span>
         ))}
       </div>

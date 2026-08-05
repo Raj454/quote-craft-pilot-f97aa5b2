@@ -35,15 +35,15 @@ import {
 import { Field, KV, SubSection } from "./bits";
 
 const summaryRows = [
-  ["1", "Pa4-354/35", "10", "Rivet Panel Holder", "$300.00 / 250 Sq In", "$3,000.00"],
-  ["2", "DSC4577524", "25", "Wheel Bearing Insert", "$55.00 / 10 Sq In", "$1,375.00"],
+  ["1", "Pa4-354/35", "10", "Rivet Panel Holder", "$300 / 250 sqin", "$3,000"],
+  ["2", "DSC4577524", "25", "Wheel Bearing Insert", "$55 / 10 sqin", "$1,375"],
   [
     "3",
     "ABCsdf456456",
     "3",
     "Lamp Shade Panel With Multi-Colors",
-    "$2,000.00 / 1,562 Sq In",
-    "$6,000.00",
+    "$2,000 / 1,562 sqin",
+    "$6,000",
   ],
 ];
 
@@ -99,7 +99,7 @@ function CollapsedPart({
     >
       <ChevronRight className="size-4 text-muted-foreground" />
       <span className="text-base font-semibold">{partNumber}</span>
-      <span className="text-base text-muted-foreground">→ {name}</span>
+      <span className="text-base text-muted-foreground">{name}</span>
       <span className="ml-auto text-base font-semibold tabular-nums">Total: {total}</span>
     </button>
   );
@@ -128,11 +128,11 @@ export function SectionExtraction({
 
       <Alert className="border-success/30 bg-surface-success">
         <CheckCircle className="size-4 text-success" />
-        <AlertDescription className="flex w-full flex-wrap items-center justify-between gap-2 text-foreground">
-          <span>AI extraction complete. Review each part below.</span>
+        <AlertDescription className="flex w-full flex-col items-start gap-1 text-foreground">
+          <span className="font-medium">AI extraction complete. Review each part below.</span>
           <a
             href="#"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline"
+            className="inline-flex items-center gap-1 text-[15px] font-medium text-primary underline underline-offset-4"
           >
             View Extraction Log <ExternalLink className="size-3.5" />
           </a>
@@ -143,22 +143,26 @@ export function SectionExtraction({
       <Card className="transition-colors hover:border-muted-foreground/30">
         <CardHeader className="flex-row items-center justify-between space-y-0">
           <CardTitle className="text-xl font-semibold">Customer Information</CardTitle>
-          <Button variant="ghost" size="sm" onClick={() => setCustomerOpen((o) => !o)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={customerOpen ? "Collapse" : "Expand"}
+            onClick={() => setCustomerOpen((o) => !o)}
+          >
             <ChevronDown
-              className={`size-4 transition-transform ${customerOpen ? "" : "-rotate-90"}`}
+              className={`size-4 transition-transform ${customerOpen ? "rotate-180" : ""}`}
             />
-            {customerOpen ? "Collapse" : "Expand"}
           </Button>
         </CardHeader>
         {customerOpen ? (
-          <CardContent className="divide-y divide-border/60">
+          <CardContent className="pt-0">
             <Field label="Odoo Q#" helper="If applicable" />
             <Field label="Company" value="ABC Metal Works" />
             <Field label="Contact" value="John Smith" />
             <Field label="Email" value="John@abcmetalworks.com" />
             <Field label="Phone" value="714-555-1212" />
             <Field label="Address" value="123 Main St, Los Angeles, CA 90024" />
-            <Field label="Email / Req Date" value="July 5, 2026" />
+            <Field label="Email/Req Date" value="July 5, 2026" />
             <Field label="Request DD (Due Date)" value="Unknown" warn />
             <Field
               label="Request Summary"
@@ -180,9 +184,9 @@ export function SectionExtraction({
                 <TableRow>
                   <TableHead className="w-10">#</TableHead>
                   <TableHead>Part #</TableHead>
-                  <TableHead>Qty</TableHead>
-                  <TableHead>Name / Description</TableHead>
-                  <TableHead>Price / unit</TableHead>
+                  <TableHead className="text-right">Qty</TableHead>
+                  <TableHead>Name/Description</TableHead>
+                  <TableHead>Price/unit</TableHead>
                   <TableHead className="text-right">Total</TableHead>
                 </TableRow>
               </TableHeader>
@@ -191,17 +195,23 @@ export function SectionExtraction({
                   <TableRow key={r[1]}>
                     <TableCell className="text-muted-foreground">{r[0]}</TableCell>
                     <TableCell className="font-medium">{r[1]}</TableCell>
-                    <TableCell className="tabular-nums">{r[2]}</TableCell>
+                    <TableCell className="text-right tabular-nums">{r[2]}</TableCell>
                     <TableCell>{r[3]}</TableCell>
-                    <TableCell className="tabular-nums">{r[4]}</TableCell>
-                    <TableCell className="text-right tabular-nums">{r[5]}</TableCell>
+                    <TableCell className="tabular-nums text-muted-foreground">{r[4]}</TableCell>
+                    <TableCell className="text-right font-semibold tabular-nums">{r[5]}</TableCell>
                   </TableRow>
                 ))}
+                <TableRow className="bg-surface hover:bg-surface">
+                  <TableCell colSpan={5} className="text-right text-base font-bold">
+                    Total Quote
+                  </TableCell>
+                  <TableCell className="text-right text-base font-bold tabular-nums text-primary">
+                    $10,375
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
-          <Separator />
-          <div className="text-right text-xl font-bold tabular-nums">Total Quote: $10,375.00</div>
         </CardContent>
       </Card>
 
@@ -214,7 +224,10 @@ export function SectionExtraction({
           {/* Part 1 */}
           <div className="rounded-lg border border-border p-4 sm:p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
-              <div className="text-lg font-bold">Pa4-354/35 → Rivet Panel Holder</div>
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="text-lg font-bold">Pa4-354/35</span>
+                <span className="text-lg text-muted-foreground">Rivet Panel Holder</span>
+              </div>
               <div className="flex items-center gap-1">
                 <Button variant="outline" size="sm">
                   <Edit className="size-4" /> Edit
@@ -227,10 +240,10 @@ export function SectionExtraction({
 
             <div className="space-y-4">
               <SubSection title="Specifications" tone="muted">
-                <div className="divide-y divide-border/60">
-                  <Field label="Price per unit" value="$300.00" helper="Computed price: $300.00" />
+                <div>
+                  <Field label="Price per unit" value="$300" helper="Computed price: $300" />
                   <Field label="Quantity" value="10" />
-                  <Field label="Total Line Item" value="$3,000.00" />
+                  <Field label="Total Line Item" value="$3,000" />
                   <Field
                     label="Drawing file"
                     editable={false}
@@ -252,7 +265,7 @@ export function SectionExtraction({
                   <Field label="Scale?" value="No" warn />
                   <Field
                     label="Total surface (Sq In)"
-                    value="595 Sq In"
+                    value="595"
                     helper="All sides, 2 sided, edges"
                   />
                   <Field
@@ -260,7 +273,7 @@ export function SectionExtraction({
                     editable={false}
                     value={
                       <span className="flex items-center gap-2">
-                        250 Sq In <Badge variant="danger">LOW confidence</Badge>
+                        250 <Badge variant="danger">LOW confidence</Badge>
                       </span>
                     }
                   />
@@ -269,7 +282,7 @@ export function SectionExtraction({
                     editable={false}
                     value={
                       <span className="flex items-center gap-2">
-                        345 Sq In <Badge variant="warning">MEDIUM confidence</Badge>
+                        345 <Badge variant="warning">MEDIUM confidence</Badge>
                       </span>
                     }
                   />
@@ -360,7 +373,6 @@ export function SectionExtraction({
                       ["Area", "345 Sq In"],
                       ["Holes", "24 Openings"],
                       ["Time", "30 min @ $35.56/hr"],
-                      ["Cost", "$35.24"],
                     ]}
                   />
                   <PricingGroup
@@ -369,7 +381,6 @@ export function SectionExtraction({
                     rows={[
                       ["Area", "250 Sq In"],
                       ["Time", "8 min @ $35.56/hr"],
-                      ["Cost", "$10.38"],
                     ]}
                   />
                   <PricingGroup
@@ -381,7 +392,6 @@ export function SectionExtraction({
                       ["Material", "1.3 Oz @ $11.22/oz"],
                       ["Color Complexity", "Normal (FED-STD-595 34094 GREEN 383 CAMO)"],
                       ["Oven Time", "35 min @ $20.38/hr"],
-                      ["Cost", "$85.27"],
                     ]}
                   />
                   <PricingGroup
@@ -399,8 +409,10 @@ export function SectionExtraction({
                       <span>Total Part Cost</span>
                       <span className="tabular-nums">$243.24 per unit</span>
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      Total Labor: $198.15 | Total Material: $68.15 | Total Time: 01:32 min
+                    <div className="flex flex-wrap gap-x-5 text-sm text-muted-foreground">
+                      <span>Total Labor: $198.15</span>
+                      <span>Total Material: $68.15</span>
+                      <span>Total Time: 01:32 min</span>
                     </div>
                   </div>
 
@@ -458,15 +470,11 @@ export function SectionExtraction({
             </div>
           </div>
 
-          <CollapsedPart
-            partNumber="DSC4577524"
-            name="Wheel Bearing Insert"
-            total="$1,375.00"
-          />
+          <CollapsedPart partNumber="DSC4577524" name="Wheel Bearing Insert" total="$1,375" />
           <CollapsedPart
             partNumber="ABCsdf456456"
             name="Lamp Shade Panel With Multi-Colors"
-            total="$6,000.00"
+            total="$6,000"
           />
         </CardContent>
       </Card>
