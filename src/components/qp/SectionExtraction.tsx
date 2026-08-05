@@ -35,15 +35,15 @@ import {
 import { Field, KV, SubSection } from "./bits";
 
 const summaryRows = [
-  ["1", "Pa4-354/35", "10", "Rivet Panel Holder", "$300.00 / 250 Sq In", "$3,000.00"],
-  ["2", "DSC4577524", "25", "Wheel Bearing Insert", "$55.00 / 10 Sq In", "$1,375.00"],
+  ["1", "Pa4-354/35", "10", "Rivet Panel Holder", "$300 / 250 sqin", "$3,000"],
+  ["2", "DSC4577524", "25", "Wheel Bearing Insert", "$55 / 10 sqin", "$1,375"],
   [
     "3",
     "ABCsdf456456",
     "3",
     "Lamp Shade Panel With Multi-Colors",
-    "$2,000.00 / 1,562 Sq In",
-    "$6,000.00",
+    "$2,000 / 1,562 sqin",
+    "$6,000",
   ],
 ];
 
@@ -99,7 +99,7 @@ function CollapsedPart({
     >
       <ChevronRight className="size-4 text-muted-foreground" />
       <span className="text-base font-semibold">{partNumber}</span>
-      <span className="text-base text-muted-foreground">→ {name}</span>
+      <span className="text-base text-muted-foreground">{name}</span>
       <span className="ml-auto text-base font-semibold tabular-nums">Total: {total}</span>
     </button>
   );
@@ -128,11 +128,11 @@ export function SectionExtraction({
 
       <Alert className="border-success/30 bg-surface-success">
         <CheckCircle className="size-4 text-success" />
-        <AlertDescription className="flex w-full flex-wrap items-center justify-between gap-2 text-foreground">
-          <span>AI extraction complete. Review each part below.</span>
+        <AlertDescription className="flex w-full flex-col items-start gap-1 text-foreground">
+          <span className="font-medium">AI extraction complete. Review each part below.</span>
           <a
             href="#"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline"
+            className="inline-flex items-center gap-1 text-[15px] font-medium text-primary underline underline-offset-4"
           >
             View Extraction Log <ExternalLink className="size-3.5" />
           </a>
@@ -143,22 +143,26 @@ export function SectionExtraction({
       <Card className="transition-colors hover:border-muted-foreground/30">
         <CardHeader className="flex-row items-center justify-between space-y-0">
           <CardTitle className="text-xl font-semibold">Customer Information</CardTitle>
-          <Button variant="ghost" size="sm" onClick={() => setCustomerOpen((o) => !o)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={customerOpen ? "Collapse" : "Expand"}
+            onClick={() => setCustomerOpen((o) => !o)}
+          >
             <ChevronDown
-              className={`size-4 transition-transform ${customerOpen ? "" : "-rotate-90"}`}
+              className={`size-4 transition-transform ${customerOpen ? "rotate-180" : ""}`}
             />
-            {customerOpen ? "Collapse" : "Expand"}
           </Button>
         </CardHeader>
         {customerOpen ? (
-          <CardContent className="divide-y divide-border/60">
+          <CardContent className="pt-0">
             <Field label="Odoo Q#" helper="If applicable" />
             <Field label="Company" value="ABC Metal Works" />
             <Field label="Contact" value="John Smith" />
             <Field label="Email" value="John@abcmetalworks.com" />
             <Field label="Phone" value="714-555-1212" />
             <Field label="Address" value="123 Main St, Los Angeles, CA 90024" />
-            <Field label="Email / Req Date" value="July 5, 2026" />
+            <Field label="Email/Req Date" value="July 5, 2026" />
             <Field label="Request DD (Due Date)" value="Unknown" warn />
             <Field
               label="Request Summary"
