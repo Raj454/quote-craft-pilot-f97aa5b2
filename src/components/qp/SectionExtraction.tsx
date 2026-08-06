@@ -87,21 +87,46 @@ function CollapsedPart({
   partNumber,
   name,
   total,
+  qty,
+  pricePerUnit,
+  area,
 }: {
   partNumber: string;
   name: string;
   total: string;
+  qty: string;
+  pricePerUnit: string;
+  area: string;
 }) {
+  const [open, setOpen] = useState(false);
   return (
-    <button
-      type="button"
-      className="flex w-full flex-wrap items-center gap-3 rounded-lg border border-border bg-background p-4 text-left transition-colors hover:border-muted-foreground/30 hover:bg-surface"
-    >
-      <ChevronRight className="size-4 text-muted-foreground" />
-      <span className="text-base font-semibold">{partNumber}</span>
-      <span className="text-base text-muted-foreground">{name}</span>
-      <span className="ml-auto text-base font-semibold tabular-nums">Total: {total}</span>
-    </button>
+    <div className="rounded-lg border border-border bg-background transition-colors hover:border-muted-foreground/30">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full flex-wrap items-center gap-3 rounded-lg p-4 text-left transition-colors hover:bg-surface"
+      >
+        <ChevronRight
+          className={`size-4 text-muted-foreground transition-transform ${open ? "rotate-90" : ""}`}
+        />
+        <span className="text-base font-semibold">{partNumber}</span>
+        <span className="text-base text-muted-foreground">{name}</span>
+        <span className="ml-auto text-base font-semibold tabular-nums">Total: {total}</span>
+      </button>
+      {open ? (
+        <div className="border-t border-border p-4 sm:p-5">
+          <SubSection title="Specifications" tone="muted">
+            <div>
+              <Field label="Price per unit" value={pricePerUnit} />
+              <Field label="Quantity" value={qty} />
+              <Field label="Total Line Item" value={total} />
+              <Field label="Coating Area (Sq In)" value={area} />
+            </div>
+          </SubSection>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
