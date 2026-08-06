@@ -500,11 +500,21 @@ export function SectionExtraction({
             </div>
           </div>
 
-          <CollapsedPart partNumber="DSC4577524" name="Wheel Bearing Insert" total="$1,375" />
+          <CollapsedPart
+            partNumber="DSC4577524"
+            name="Wheel Bearing Insert"
+            total="$1,375"
+            qty="25"
+            pricePerUnit="$55"
+            area="10"
+          />
           <CollapsedPart
             partNumber="ABCsdf456456"
             name="Lamp Shade Panel With Multi-Colors"
             total="$6,000"
+            qty="3"
+            pricePerUnit="$2,000"
+            area="1,562"
           />
         </CardContent>
       </Card>
