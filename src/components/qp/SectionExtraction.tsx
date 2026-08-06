@@ -295,10 +295,13 @@ export function SectionExtraction({
                 </p>
                 <dl className="grid gap-x-8 sm:grid-cols-2">
                   {coatingBom.map(([k, v, warn]) => (
-                    <div key={k} className="border-b border-border/60 py-2">
-                      <dt className="text-sm text-muted-foreground">{k}</dt>
+                    <div
+                      key={k}
+                      className="flex flex-wrap items-baseline gap-x-3 border-b border-border/60 py-2 text-left"
+                    >
+                      <dt className="w-32 shrink-0 text-sm text-muted-foreground">{k}</dt>
                       <dd
-                        className={`text-base ${warn ? "font-medium text-warning" : "text-foreground"}`}
+                        className={`flex-1 text-left text-base ${warn ? "font-medium text-warning" : "text-foreground"}`}
                       >
                         {v}
                         {warn ? (
