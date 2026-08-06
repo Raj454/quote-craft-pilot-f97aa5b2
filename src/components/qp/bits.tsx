@@ -52,11 +52,11 @@ export function KV({
   bold?: boolean;
 }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 py-1">
-      <span className="text-[15px] text-muted-foreground">{label}</span>
+    <div className="flex flex-wrap items-baseline gap-x-3 py-1">
+      <span className="w-44 shrink-0 text-[15px] text-muted-foreground">{label}</span>
       <span
         className={cn(
-          "text-right text-[15px] tabular-nums",
+          "text-left text-[15px] tabular-nums",
           bold && "font-semibold",
           warn && "font-medium text-warning",
         )}
