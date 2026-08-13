@@ -324,7 +324,7 @@ export function SectionExtraction({
                       key={k}
                       className="flex flex-wrap items-baseline gap-x-3 border-b border-border/60 py-2 text-left"
                     >
-                      <dt className="w-32 shrink-0 text-right text-sm text-muted-foreground">{k}</dt>
+                      <dt className="w-32 shrink-0 text-left text-sm text-muted-foreground">{k}</dt>
                       <dd
                         className={`flex-1 text-left text-base ${warn ? "font-medium text-warning" : "text-foreground"}`}
                       >
