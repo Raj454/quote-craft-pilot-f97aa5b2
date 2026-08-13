@@ -17,7 +17,7 @@ export function RfqHeader() {
         {pills.map(([k, v]) => (
           <span
             key={k}
-            className="rounded-full border border-border bg-surface px-3 py-1 text-sm text-muted-foreground"
+            className="rounded-full border border-border bg-surface px-3 py-1.5 text-base text-muted-foreground"
           >
             <span className="font-semibold text-foreground">{k}</span> {v}
           </span>
