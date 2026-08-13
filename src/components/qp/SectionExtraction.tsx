@@ -210,7 +210,7 @@ export function SectionExtraction({
                   <TableHead className="w-10">#</TableHead>
                   <TableHead>Part #</TableHead>
                   <TableHead>Name/Description</TableHead>
-                  <TableHead className="text-right">Qty</TableHead>
+                  <TableHead className="text-right pr-8">Qty</TableHead>
                   <TableHead>Price/unit</TableHead>
                   <TableHead className="text-right">Total</TableHead>
                 </TableRow>
@@ -221,7 +221,7 @@ export function SectionExtraction({
                     <TableCell className="text-muted-foreground">{r[0]}</TableCell>
                     <TableCell className="font-medium">{r[1]}</TableCell>
                     <TableCell>{r[3]}</TableCell>
-                    <TableCell className="text-right tabular-nums">{r[2]}</TableCell>
+                    <TableCell className="text-right tabular-nums pr-8">{r[2]}</TableCell>
                     <TableCell className="tabular-nums text-muted-foreground">{r[4]}</TableCell>
                     <TableCell className="text-right font-semibold tabular-nums">{r[5]}</TableCell>
                   </TableRow>
