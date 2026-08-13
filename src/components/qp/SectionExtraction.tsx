@@ -322,9 +322,9 @@ export function SectionExtraction({
                   {coatingBom.map(([k, v, warn]) => (
                     <div
                       key={k}
-                      className="flex flex-wrap items-baseline gap-x-3 border-b border-border/60 py-2 text-left"
+                      className="flex flex-wrap items-baseline gap-x-3 border-b border-border/60 py-2"
                     >
-                      <dt className="w-32 shrink-0 text-left text-sm text-muted-foreground">{k}</dt>
+                      <dt className="w-32 shrink-0 text-right text-sm font-medium text-foreground">{k}</dt>
                       <dd
                         className={`flex-1 text-left text-base ${warn ? "font-medium text-warning" : "text-foreground"}`}
                       >
