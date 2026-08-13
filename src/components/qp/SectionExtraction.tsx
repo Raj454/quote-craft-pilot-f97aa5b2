@@ -71,7 +71,7 @@ function PricingGroup({
   return (
     <div className="rounded-lg border border-border bg-background p-4">
       <div className="mb-1 flex flex-wrap items-baseline gap-x-3">
-        <h5 className="w-44 shrink-0 text-base font-semibold">{title}</h5>
+        <h5 className="w-44 shrink-0 text-right text-base font-semibold">{title}</h5>
         {cost ? <span className="text-base font-semibold tabular-nums">{cost}</span> : null}
       </div>
       <div className="divide-y divide-border/60">
@@ -324,7 +324,7 @@ export function SectionExtraction({
                       key={k}
                       className="flex flex-wrap items-baseline gap-x-3 border-b border-border/60 py-2 text-left"
                     >
-                      <dt className="w-32 shrink-0 text-sm text-muted-foreground">{k}</dt>
+                      <dt className="w-32 shrink-0 text-right text-sm text-muted-foreground">{k}</dt>
                       <dd
                         className={`flex-1 text-left text-base ${warn ? "font-medium text-warning" : "text-foreground"}`}
                       >
@@ -434,7 +434,7 @@ export function SectionExtraction({
                   <Separator />
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-baseline gap-x-3 text-base font-bold">
-                      <span className="w-44 shrink-0">Total Part Cost</span>
+                      <span className="w-44 shrink-0 text-right">Total Part Cost</span>
                       <span className="tabular-nums">$243.24 per unit</span>
                     </div>
                     <div className="flex flex-wrap gap-x-5 text-sm text-muted-foreground">
@@ -452,7 +452,7 @@ export function SectionExtraction({
                       <KV label="Shipping" value="+ $0.00 (or + 0%)" />
                       <KV label="Discount" value="- $0.00 (or - 0%)" />
                       <div className="flex flex-wrap items-baseline gap-x-3 py-1.5">
-                        <span className="w-44 shrink-0 text-[15px] text-muted-foreground">
+                        <span className="w-44 shrink-0 text-right text-[15px] text-muted-foreground">
                           Overhead &amp; Profit
                         </span>
                         <span className="flex flex-wrap items-center gap-3">
@@ -476,7 +476,7 @@ export function SectionExtraction({
 
                   <div className="rounded-lg bg-primary p-5 text-primary-foreground">
                     <div className="flex flex-wrap items-baseline gap-x-3">
-                      <span className="w-44 shrink-0 text-base font-semibold">Price per Unit</span>
+                      <span className="w-44 shrink-0 text-right text-base font-semibold">Price per Unit</span>
                       <span className="text-2xl font-bold tabular-nums">$300.24</span>
                     </div>
                     <p className="mt-1 text-sm opacity-80">
@@ -484,7 +484,7 @@ export function SectionExtraction({
                     </p>
                     <Separator className="my-3 bg-primary-foreground/20" />
                     <div className="flex flex-wrap items-baseline gap-x-3">
-                      <span className="w-44 shrink-0 text-base font-semibold">Total Line Item</span>
+                      <span className="w-44 shrink-0 text-right text-base font-semibold">Total Line Item</span>
                       <span className="text-xl font-bold tabular-nums">$3,004.36 (10 Qty)</span>
                     </div>
                   </div>
