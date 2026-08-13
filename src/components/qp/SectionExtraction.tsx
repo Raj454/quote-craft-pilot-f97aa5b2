@@ -315,7 +315,7 @@ export function SectionExtraction({
               </SubSection>
 
               <SubSection title="Coating Details (Coating BOM)">
-                <p className="mb-3 text-sm text-muted-foreground">
+                <p className="mb-3 text-sm text-foreground">
                   Items marked None/Not listed will NOT be exported to Odoo.
                 </p>
                 <dl className="grid gap-x-8 sm:grid-cols-2">
