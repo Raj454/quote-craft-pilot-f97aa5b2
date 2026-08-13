@@ -19,7 +19,9 @@ export function Field({
 }) {
   return (
     <div className="group -mx-2 flex flex-wrap items-start gap-x-3 gap-y-0.5 rounded-md px-2 py-1.5 transition-colors hover:bg-surface">
-      <div className="w-44 shrink-0 text-[15px] font-semibold text-foreground">{label}:</div>
+      <div className="w-44 shrink-0 text-right text-[15px] font-semibold text-foreground">
+        {label}:
+      </div>
       <div className="flex min-w-0 flex-1 items-center gap-2">
         <div
           className={cn(
@@ -53,7 +55,7 @@ export function KV({
 }) {
   return (
     <div className="flex flex-wrap items-baseline gap-x-3 py-1">
-      <span className="w-44 shrink-0 text-[15px] text-muted-foreground">{label}</span>
+      <span className="w-44 shrink-0 text-right text-[15px] text-muted-foreground">{label}</span>
       <span
         className={cn(
           "text-left text-[15px] tabular-nums",
